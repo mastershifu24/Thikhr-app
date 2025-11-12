@@ -97,7 +97,7 @@ export function SettingsScreen({ navigation }: Props) {
       content: {
         title: 'Dhikr Reminder',
         body: 'Time for your daily dhikr! سبحان الله',
-        sound: true,
+        sound: 'default',
       },
       trigger: {
         hour: hours,
