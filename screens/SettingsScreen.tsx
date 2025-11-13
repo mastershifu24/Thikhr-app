@@ -36,7 +36,9 @@ export function SettingsScreen({ navigation }: Props) {
       const storedTime = await AsyncStorage.getItem('reminderTime');
 
       if (storedReminders !== null) {
-        setRemindersEnabled(JSON.parse(storedReminders));
+        const parsed = JSON.parse(storedReminders);
+        // Ensure it's a boolean, not a string
+        setRemindersEnabled(parsed === true || parsed === 'true');
       }
       if (storedTime) {
         setReminderTime(storedTime);
@@ -97,7 +99,7 @@ export function SettingsScreen({ navigation }: Props) {
       content: {
         title: 'Dhikr Reminder',
         body: 'Time for your daily dhikr! سبحان الله',
-        sound: 'default',
+        sound: true,
       },
       trigger: {
         hour: hours,
