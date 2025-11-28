@@ -4,36 +4,36 @@
     "slug": "thikhr-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#27ae60",
+      "resizeMode": "contain"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mastershifu24.thikhrapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "android": {
+      "package": "com.mastershifu24.thikhrapp",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#27ae60"
+      }
     },
     "plugins": [
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/notification-icon.png",
-          "color": "#ffffff"
-        }
-      ]
-    ]
+      "expo-notifications",
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "855a4cf9-249f-4f23-a05d-76fa7991f50c"
+      }
+    }
   }
 }

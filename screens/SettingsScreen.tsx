@@ -86,29 +86,41 @@ export function SettingsScreen({ navigation }: Props) {
   };
 
   const scheduleNotification = async () => {
-    if (!remindersEnabled || !notificationPermission) return;
+    try {
+      // Ensure we have valid boolean values
+      if (remindersEnabled !== true || !notificationPermission) return;
 
-    // Cancel existing notifications
-    await Notifications.cancelAllScheduledNotificationsAsync();
+      // Cancel existing notifications
+      await Notifications.cancelAllScheduledNotificationsAsync();
 
-    // Parse time
-    const [hours, minutes] = reminderTime.split(':').map(Number);
+      // Parse time
+      const [hours, minutes] = reminderTime.split(':').map(Number);
 
-    // Schedule daily notification
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'Dhikr Reminder',
-        body: 'Time for your daily dhikr! سبحان الله',
-        sound: true,
-      },
-      trigger: {
-        hour: hours,
-        minute: minutes,
-        repeats: true,
-      },
-    });
+      // Validate time values
+      if (isNaN(hours) || isNaN(minutes)) {
+        console.error('Invalid time format');
+        return;
+      }
 
-    Alert.alert('Success', `Daily dhikr reminder set for ${reminderTime}`);
+      // Schedule daily notification
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Dhikr Reminder',
+          body: 'Time for your daily dhikr! سبحان الله',
+          sound: true,
+        },
+        trigger: {
+          hour: hours,
+          minute: minutes,
+          repeats: true,
+        },
+      });
+
+      Alert.alert('Success', `Daily dhikr reminder set for ${reminderTime}`);
+    } catch (error) {
+      console.error('Error scheduling notification:', error);
+      Alert.alert('Error', 'Failed to schedule notification. Please try again.');
+    }
   };
 
   const updateReminderTime = async (time: string) => {

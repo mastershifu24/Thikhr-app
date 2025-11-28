@@ -35,3 +35,11 @@ coverage/
 *.tmp
 *.temp
 .cache/
+
+# Personal learning guides (not for public repo)
+START_HERE.md
+LEARNING_GUIDE.md
+QUICK_REFERENCE.md
+APP_ARCHITECTURE.md
+API_INTEGRATION_EXAMPLE.tsx
+NEXT_STEPS.md
